@@ -209,9 +209,6 @@ int main(int argc, char **argv)
     */
    hci_filter_clear(&flt);
    hci_filter_set_ptype(HCI_EVENT_PKT, &flt);
-   //hci_filter_set_event(EVT_INQUIRY_RESULT, &flt);
-   hci_filter_set_event(EVT_INQUIRY_RESULT_WITH_RSSI, &flt);
-   hci_filter_set_event(EVT_INQUIRY_COMPLETE, &flt);
    hci_filter_set_event(EVT_CMD_COMPLETE, &flt);
    hci_filter_set_event(EVT_CONN_COMPLETE, &flt);
    hci_filter_set_event(EVT_DISCONN_COMPLETE, &flt);
@@ -249,21 +246,20 @@ int main(int argc, char **argv)
 
                   switch (hdr->evt) {
 
-                      case EVT_CONN_COMPLETE:
-                          /* Inquiry is finished, wait a random time
-                           * then start another.
-                           */
-
+                      case EVT_CMD_COMPLETE:
                           if( rfsock != -1 ) {
+                              usleep(rand() % MAX_DELAY );
                               btrssi(optarg);
-                              close( rfsock );
+                          }
+                          break;
+                      case EVT_CONN_COMPLETE:
+                          if( rfsock != -1 ) {
+                              usleep(rand() % MAX_DELAY );
+                              btrssi(optarg);
                           }
                           break;
 
                       case EVT_DISCONN_COMPLETE:
-                          /* Inquiry is finished, wait a random time
-                           * then start another.
-                           */
                           usleep(rand() % MAX_DELAY );
                           rfsock = btconnect(optarg);
                           break;
@@ -285,6 +281,7 @@ int main(int argc, char **argv)
       usage(argv[0]);
 
     printf("Program finished\n");
+    close( rfsock );
     close( sock );
     return 0;
 }
