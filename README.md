@@ -27,6 +27,70 @@ make
 Use it
 ======
 
+1. usage
+
+```
+ubuntu@ubuntu-armhf:~$ ./rssi -h
+
+Usage: ./rssi [-s] [-r btaddr]
+
+	-h          display this text
+	-s          scan
+	-r btaddr   get rssi on device at address btaddr
+```
+
+2. Scanning
+
+```
+ubuntu@ubuntu-armhf:~$ ./rssi -s
+Open device
+Scan
+Start inquiry ...
+00:1E:C2:8A:92:89  iMac de JTB
+10:9A:DD:CD:EE:2C  MacBook Pro de Jean-Thierry BONHOMME
+Program finished
+```
+
+3. Get rssi
+
+```
+ubuntu@ubuntu-armhf:~$ ./rssi -r 98:F0:AB:4F:C9:98
+Open device
+EVT_CMD_STATUS - status : 0 - ncmd : 1 - opcode : 1029
+RSSI return value: -6
+EVT_CMD_STATUS - status : 0 - ncmd : 1 - opcode : 1051
+EVT_CMD_STATUS - status : 0 - ncmd : 1 - opcode : 1052
+EVT_CMD_STATUS - status : 0 - ncmd : 1 - opcode : 1049
+EVT_CMD_STATUS - status : 0 - ncmd : 1 - opcode : 1041
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 1035
+RSSI return value: -7
+Event: 0x06
+EVT_CMD_STATUS - status : 0 - ncmd : 1 - opcode : 1043
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -7
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -7
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -7
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -7
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -5
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -5
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -5
+EVT_CMD_COMPLETE - ncmd : 1 - opcode : 5125
+RSSI return value: -5
+```
+
+Todo
+====
+
+1. Clean event logs
+2. Handle a dynamic list of bbaddr to get their ssid
+3. Send results to a centralized database
+4. Send email in case a known device appear or desappear (ie kids are at home after school)
 
 Sources
 =======
