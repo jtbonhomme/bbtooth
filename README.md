@@ -27,7 +27,8 @@ make
 Use it
 ======
 
-1. usage
+Usage
+-----
 
 ```
 ubuntu@ubuntu-armhf:~$ ./rssi -h
@@ -39,7 +40,8 @@ Usage: ./rssi [-s] [-r btaddr]
 	-r btaddr   get rssi on device at address btaddr
 ```
 
-2. Scanning
+Scanning
+--------
 
 ```
 ubuntu@ubuntu-armhf:~$ ./rssi -s
@@ -51,7 +53,8 @@ Start inquiry ...
 Program finished
 ```
 
-3. Get rssi
+Get rssi
+--------
 
 ```
 ubuntu@ubuntu-armhf:~$ ./rssi -r 98:F0:AB:4F:C9:98
